@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        /* --- Global Styles & Dark Theme --- */
+        :root {
+            --bg-color: #1a1a1a;
+            --primary-text-color: #e0e0e0;
+            --secondary-text-color: #b3b3b3;
+            --accent-color: #00aaff;
+            --border-color: #333333;
+            --card-bg-color: #242424;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text-color);
+            line-height: 1.6;
+        }
+
+        /* --- Main Container --- */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        /* --- Header Section --- */
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+            margin-right: 20px;
+        }
+
+        .header-info h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .contact-links a {
+            color: var(--secondary-text-color);
+            text-decoration: none;
+            font-size: 1.5em;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Tab ("Window Slides") Navigation --- */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            color: var(--secondary-text-color);
+            padding: 10px 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        /* SMOOTHER ANIMATION: The line now slides in from the left */
+        .tab-button::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; /* Sits perfectly on top of the container's border */
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: left; /* Animation starts from the left */
+            transition: transform 0.3s ease-out; /* Smoother timing */
+        }
+
+        .tab-button:hover {
+            color: var(--primary-text-color);
+        }
+
+        .tab-button.active {
+            color: var(--accent-color);
+        }
+
+        .tab-button.active::after {
+            transform: scaleX(1);
+        }
+
+        /* --- Tab Content Panels --- */
+        .tab-content {
+            display: none; /* Hide all panels by default */
+        }
+
+        .tab-content.active {
+            display: block; /* Show only the active panel */
+        }
+        
+        .tab-content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-text-color);
+        }
+        
+        .tab-content p {
+            color: var(--secondary-text-color);
+            font-size: 1.1em;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            margin-bottom: 15px;
+        }
+        
+        /* --- Styling for Links within content --- */
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .project-description {
+            color: var(--secondary-text-color);
+            padding-left: 10px; /* Indent description slightly */
+        }
+        
+        /* --- Responsive Design for Mobile --- */
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-pic {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .contact-links {
+                margin-top: 10px;
+            }
+            
+            .tabs {
+                justify-content: space-around;
+            }
+            
+            .tab-button {
+                padding: 10px 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-pic">
+            <div class="header-info">
+                <h1>Mohammad Umair</h1>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/mohammad-umair-858566289" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:umairwachkoo@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://twitter.com/umairwachkoo" target="_blank" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://github.com/muwk" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-button" onclick="openTab('about')">About</button>
+            <button class="tab-button" onclick="openTab('skills')">Skills</button>
+            <button class="tab-button" onclick="openTab('projects')">Projects</button>
+        </nav>
+        
+        <div id="about" class="tab-content">
+            <h2>About</h2>
+            <p>
+                I love to build things that solve real-world problems. When I'm not coding, I enjoy hiking, photography, and exploring new machine learning concepts. I also sometimes <a href="#">blog</a> about technology and productivity.
+            </p>
+        </div>
+
+        <div id="skills" class="tab-content">
+            <h2>Technical Skills</h2>
+            <ul>
+                <li><strong>Languages:</strong> Python, JavaScript, SQL, HTML/CSS</li>
+                <li><strong>Frameworks:</strong> React, Node.js, Django, Flask</li>
+                <li><strong>Databases:</strong> PostgreSQL, MongoDB, Redis</li>
+                <li><strong>Tools:</strong> Docker, Git, Kubernetes, AWS</li>
+            </ul>
+        </div>
+
+        <div id="projects" class="tab-content">
+            <h2>Projects</h2>
+            <ul>
+                <li>
+                    <a href="#">Project One</a>
+                    <p class="project-description">A web application built with React and Django that helps users track their personal finances.</p>
+                </li>
+                <li>
+                    <a href="#">Project Two</a>
+                    <p class="project-description">A command-line tool written in Python to automate daily data backups from multiple sources.</p>
+                </li>
+                 <li>
+                    <a href="#">Project Three</a>
+                    <p class="project-description">A language-independent shared socket manager for high-performance servers.</p>
+                </li>
+                 <li>
+                    <a href="#">Project Four</a>
+                    <p class="project-description">A Ruby library serving as a drop-in replacement for an actual MongoDB server for testing purposes.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            // Hide all tab content
+            const tabContents = document.querySelectorAll(".tab-content");
+            tabContents.forEach(tab => {
+                tab.classList.remove("active");
+                // A small trick to reset display property
+                tab.style.display = "none";
+            });
+
+            // Deactivate all tab buttons
+            const tabButtons = document.querySelectorAll(".tab-button");
+            tabButtons.forEach(button => button.classList.remove("active"));
+
+            // Show the target tab content and activate the clicked button
+            const activeTab = document.getElementById(tabName);
+            activeTab.style.display = "block";
+            activeTab.classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+
+        // Make the first tab active by default on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.tab-button').click();
+        });
+    </script>
+
+</body>
+</html>
